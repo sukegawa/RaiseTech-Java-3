@@ -1,20 +1,26 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) {
 
         //北関東にある県のリストを作成
-        List<String> Nkantou = new ArrayList<>();
-        Nkantou.add("茨城県");
-        Nkantou.add("群馬県");
-        Nkantou.add("栃木県");
+        List<String> nKantou = new ArrayList<>();
+        nKantou.add("茨城県");
+        nKantou.add("群馬県");
+        nKantou.add("栃木県");
 
         //リスト内容と要素数を出力
         System.out.println("北関東は、");
-        for (String ken : Nkantou) {
+        for (String ken : nKantou) {
             System.out.println(ken);
         }
-        System.out.println("の" + Nkantou.size() + "県です。");
+        System.out.println("の" + nKantou.size() + "県です。");
 
 
         //県名をキーに県庁所在地の値を登録する
@@ -25,23 +31,30 @@ public class Main {
 
         //県名と県庁所在地を出力
         System.out.println("北関東の県庁所在地は");
-        for (Map.Entry<String, String> kenentry : kentyou.entrySet()) {
-            System.out.println(kenentry.getKey() + "：" + kenentry.getValue());
+        for (Map.Entry<String, String> kenEntry : kentyou.entrySet()) {
+            System.out.println(kenEntry.getKey() + "：" + kenEntry.getValue());
         }
 
-        //県名の入力を求める
-        System.out.println("北関東の件名を漢字で入力してください。（○○県）");
-        Scanner scanner = new Scanner(System.in);
-        String kenname = scanner.nextLine();
+        //kentyouを変更不可能なビューで返す
+        Map<String, String> unmodifinableMap = Collections.unmodifiableMap(kentyou);
 
-        //入力された文字（キー）に値がなかったときの処理
-        if (kentyou.get(kenname) == null) {
-            System.out.println("北関東にある県名ではないか、入力内容が間違っています。");
-        } else {
-            //値があれば県名と県庁所在地を出力する
-            System.out.println(kenname + "の県庁所在地は" + kentyou.get(kenname));
+        try {
+            //県名の入力を求める
+            System.out.println("登録する県名を入力してください。");
+            Scanner scanner1 = new Scanner(System.in);
+            String kenName = scanner1.nextLine();
+
+            //県名の入力を求める
+            System.out.println("登録する県庁所在地を入力してください。");
+            Scanner scanner2 = new Scanner(System.in);
+            String townName = scanner2.nextLine();
+
+            //変更不可能なビューのマップに追加（例外）
+            unmodifinableMap.put(kenName, townName);
+
+            //例外処理
+        } catch (UnsupportedOperationException e) {
+            System.out.println("このリストの変更はできません。");
         }
-
     }
 }
-
