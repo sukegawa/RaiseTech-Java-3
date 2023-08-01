@@ -8,7 +8,9 @@ RaiseTechのJavaコース第3回の課題です。<br>
 ・変数名を整理し、キャメルケースにしました。  
 ・例外処理(39-58)  
 初回提出時にMapの値がnullだった場合の処理が条件分岐だったため、HashMapをCollections.unmodifiableMapで読み取り専用ビューを適用させ、  
-そのビューに対してputさせることで例外（UnsupportedOperationException）を発生させ、それに対する処理を実装しました。
+そのビューに対してputさせることで例外（UnsupportedOperationException）を発生させ、それに対する処理を実装しました。  
+
+## 2023.7.26　課題提出
 ・List(7-17)<br>
 県名のArrayListインスタンス化<br>
 要素内容と要素数の出力を行いました。<br>
